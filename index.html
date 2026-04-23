@@ -1,59 +1,57 @@
 <!DOCTYPE html>
-<html lang="en" class="antialiased lenis lenis-smooth"><head>
+<html lang="fr" class="antialiased lenis lenis-smooth">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confluentics | Regenerative AI</title>
-    <link rel="icon" type="image/jpeg" href="favicon.png">
-    <meta name="description" content="CONFLUENTICS leverages advanced AI systems to orchestrate the transition towards a regenerative macroeconomic model. Book a systemic audit today.">
-    <meta name="keywords" content="Regenerative Economy, Artificial Intelligence, Systemic Audit, Net-Positive Strategy, Digital Twins, Confluentics">
-    <meta name="author" content="Confluentics">
-    <link rel="canonical" href="https://confluentics.com/">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://confluentics.com/">
-    <meta property="og:title" content="Confluentics | Regenerative Economy & AI">
-    <meta property="og:description" content="Architecting resilience. We leverage Artificial Intelligence to orchestrate the transition to a Net-Positive, regenerative economy.">
-    <meta property="og:image" content="https://confluentics.com/favicon.jpg">
-
-    <meta property="twitter:card" content="summary">
-    <meta property="twitter:url" content="https://confluentics.com/">
-    <meta property="twitter:title" content="Confluentics | Regenerative Economy & AI">
-    <meta property="twitter:description" content="Architecting resilience. We leverage Artificial Intelligence to orchestrate the transition to a Net-Positive, regenerative economy.">
-    <meta property="twitter:image" content="https://confluentics.com/favicon.jpg">
+    <title>Confluentics | Agentic AI Infrastructure (Grounded on Google Cloud)</title>
+    <meta name="description" content="CONFLUENTICS est une couche d'intelligence propriétaire, fully grounded sur Google Cloud, orchestrant des workflows multi-agents pour la Négentropie économique.">
     
-    <!-- Polices Google : Space Grotesk & Inter -->
+    <!-- Polices Google : Playfair Display (Autorité), Inter (Exécution), Space Grotesk (Tech) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Space+Grotesk:wght@300;400;500&amp;display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- GSAP & Lenis -->
+    <!-- GSAP & Lenis pour l'orchestration des animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 
-    <!-- Configuration Tailwind personnalisée -->
+    <!-- Configuration Tailwind alignée sur les Design Tokens MVB 2026 -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        offBlack: '#121212',
-                        lightGrey: '#efefef',
-                        primary: '#ffffff',
-                        secondary: '#778643', /* Vert signature Oevra */
-                        content: '#4e4e4e',
-                        darkGreen: '#1b2b1b',
+                        charcoal: '#111111',
+                        charcoalLight: '#1A1A1A',
+                        alabaster: '#F7F7F5',
+                        sage: '#184F35',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
                         space: ['Space Grotesk', 'monospace'],
                     },
                     fontSize: {
-                        'hero-lg': 'clamp(3.5rem, 9vw, 10rem)',
-                        'hero-md': 'clamp(2.5rem, 6vw, 6.5rem)',
+                        // Échelle modulaire ratio 1.25 (Base 16px)
+                        'micro': '13px',
+                        'base': '16px',
+                        'h4': '20px',
+                        'h3': '25px',
+                        'h2': '31px',
+                        'h1': '39px',
+                        'display': 'clamp(2.5rem, 5vw, 3.5rem)',
+                        'display-lg': 'clamp(3rem, 7vw, 5rem)',
+                    },
+                    spacing: {
+                        // Grille de 8px
+                        '04': '32px',
+                        '08': '64px',
+                        '12': '96px',
+                        '16': '128px',
                     }
                 }
             }
@@ -61,578 +59,403 @@
     </script>
 
     <style>
-        /* Base & Réinitialisations */
+        /* Base & Néo-Minimalisme 2.0 */
         body {
-            background-color: #efefef;
-            color: #121212;
+            background-color: #F7F7F5; /* Albâtre */
+            color: #111111; /* Fusain */
             overflow-x: hidden;
-            cursor: none; /* Cache le curseur natif partout sur desktop */
+            cursor: none;
         }
 
-        /* Preloader */
-        #preloader {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: #121212;
-            color: #efefef;
-            z-index: 99999;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 4rem;
-        }
-        .loader-counter {
-            font-family: 'Space Grotesk', monospace;
-            font-size: clamp(4rem, 10vw, 12rem);
-            line-height: 1;
-            font-weight: 300;
-        }
-
-        /* Calque de bruit (Noise Layer) */
-        .noise-layer {
+        /* SVG Filter pour le "Tactile Craft" (Bruit de Perlin) */
+        .noise-overlay {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
             pointer-events: none;
-            z-index: 50;
-            opacity: 0.35;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            z-index: 9999;
+            opacity: 0.4;
+            mix-blend-mode: multiply;
         }
 
-        /* Styles Lenis Smooth Scroll */
+        /* Smooth Scroll */
         html.lenis { height: auto; }
         .lenis.lenis-smooth { scroll-behavior: auto; }
         .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
         .lenis.lenis-stopped { overflow: hidden; }
 
-        /* Dégradés & Effets de Texte */
-        .text-gradient {
-            background: linear-gradient(285.8deg, #395d38 7.1%, #4f663c 43.13%, #778643 91.71%);
-            -webkit-background-clip: text;
-            background-size: 200% auto;
-            -webkit-text-fill-color: transparent;
-            animation: gradientMove 5s ease infinite alternate;
+        /* Typographie de marque */
+        .text-sage { color: #184F35; }
+        .bg-sage { background-color: #184F35; }
+
+        /* Morph-Mark Animation CSS (Issue de la charte technique) */
+        .confluentics-morph-mark {
+            width: 48px;
+            height: 48px;
+            overflow: visible;
         }
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+        .organic-data-flow {
+            stroke-dasharray: 200; 
+            stroke-dashoffset: 0;
+            transform-origin: center;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .logo-container:hover .organic-data-flow {
+            animation: breathe-pulse 5s ease-in-out infinite, data-stream-flow 2.5s linear infinite;
+        }
+        @keyframes breathe-pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.04) rotate(3deg); }
+        }
+        @keyframes data-stream-flow {
+            0% { stroke-dashoffset: 200; }
+            100% { stroke-dashoffset: -200; }
         }
 
-        /* Animations d'apparition de texte (Text Reveal) */
-        .reveal-wrapper {
-            overflow: hidden;
-            display: block;
-        }
-        .reveal-text {
-            display: block;
-            transform: translateY(120%);
-        }
-
-        /* Style des boutons (CTA) */
-        .cta-btn {
+        /* Boutons Architecturaux (SaaS / Tech) */
+        .btn-tech {
             display: inline-flex;
             align-items: center;
             gap: 1rem;
-            padding: 1rem 2.5rem;
-            border-radius: 999px;
+            padding: 16px 32px;
+            background-color: #111111;
+            color: #F7F7F5;
             font-family: 'Space Grotesk', monospace;
             text-transform: uppercase;
-            font-size: 0.875rem;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 1px solid currentColor;
-            cursor: none; /* Laisse le curseur custom gérer ça */
-            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            border: 1px solid #111111;
         }
-        .cta-btn::before {
-            content: "";
+        .btn-tech::after {
+            content: '';
             position: absolute;
-            top: 100%; left: 0; width: 100%; height: 100%;
-            background-color: #121212;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: -1;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background-color: #184F35; /* Hover Vert Sauge */
+            transition: transform 0.4s ease;
+            z-index: 0;
         }
-        .cta-btn:hover::before { transform: translateY(-100%); }
-        .cta-btn:hover { color: #ffffff !important; border-color: #121212; }
-        
-        .cta-btn.inverse::before { background-color: #ffffff; }
-        .cta-btn.inverse { background-color: #778643; color: #ffffff; border-color: #778643; }
-        .cta-btn.inverse:hover { color: #121212 !important; border-color: #ffffff; }
+        .btn-tech:hover::after { transform: translateX(100%); }
+        .btn-tech > * { position: relative; z-index: 1; }
+        .btn-tech:hover { border-color: #184F35; }
 
-        .cta-arrow { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .cta-btn:hover .cta-arrow { transform: translateX(8px); }
+        .btn-outline {
+            background-color: transparent;
+            color: #111111;
+        }
+        .btn-outline::after { background-color: #111111; }
+        .btn-outline:hover { color: #F7F7F5; }
 
-        /* --- NOUVEAU : Bandeau défilant infini (Marquee) --- */
+        /* Marquee pour l'infrastructure */
         .marquee-container {
             overflow: hidden;
             white-space: nowrap;
             width: 100vw;
-            background-color: #778643;
-            color: #efefef;
-            padding: 1.5rem 0;
+            background-color: #111111;
+            color: #F7F7F5;
+            padding: 24px 0;
             display: flex;
-            transform: rotate(-2deg) scale(1.05); /* Effet design incliné */
-            margin: 4rem 0;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            border-bottom: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         .marquee-content {
             display: flex;
-            animation: marquee 25s linear infinite;
+            animation: marquee 20s linear infinite;
         }
         .marquee-item {
             font-family: 'Space Grotesk', monospace;
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            padding: 0 3rem;
+            font-size: 16px;
+            letter-spacing: 0.05em;
+            padding: 0 48px;
             display: flex;
             align-items: center;
-            gap: 3rem;
+            gap: 48px;
         }
         @keyframes marquee {
             0% { transform: translateX(0%); }
             100% { transform: translateX(-50%); }
         }
 
-        /* --- NOUVEAU : Effet Spotlight sur les cartes Bento --- */
-        .bento-card {
-            position: relative;
+        /* Cartes d'Infrastructure */
+        .infra-card {
+            border: 1px solid rgba(17, 17, 17, 0.1);
+            background-color: #F7F7F5;
+            transition: all 0.4s ease;
+        }
+        .infra-card:hover {
+            border-color: #184F35;
             background-color: #ffffff;
-            border: 1px solid rgba(0,0,0,0.05);
-            overflow: hidden;
-        }
-        .bento-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(119, 134, 67, 0.08), transparent 40%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-            z-index: 1;
-        }
-        .bento-card:hover::before { opacity: 1; }
-        .bento-card > * { position: relative; z-index: 2; }
-
-        /* Animations d'Images (Clip-path) */
-        .img-reveal {
-            clip-path: inset(100% 0 0 0); /* Masqué par le bas */
-        }
-        
-        /* Conteneur pour l'épinglage du défilement horizontal */
-        @media (min-width: 768px) { .pin-container { height: 400vh; } }
-
-        /* Mega Footer Typography */
-        .mega-footer-text {
-            font-size: 14vw;
-            line-height: 0.8;
-            font-weight: 500;
-            letter-spacing: -0.04em;
-            color: #121212;
-            text-align: center;
-            width: 100%;
-            display: block;
+            transform: translateY(-4px);
         }
 
-        /* --- Curseur personnalisé en "Blend Mode" --- */
+        /* Curseur personnalisé (Blend Mode) */
         @media (pointer: fine) {
-            body { cursor: none; }
-            a, button, details summary { cursor: none; }
-            #cursor-dot, #cursor-outline {
+            #cursor-dot {
                 position: fixed;
                 top: 0; left: 0;
+                width: 8px; height: 8px;
+                background-color: #184F35;
                 border-radius: 50%;
-                z-index: 9999;
                 pointer-events: none;
-                mix-blend-mode: difference; /* L'effet Magique */
-            }
-            #cursor-dot {
-                width: 10px; height: 10px;
-                background-color: #ffffff;
+                z-index: 9999;
                 transform: translate(-50%, -50%);
+                transition: width 0.2s, height 0.2s, background-color 0.2s;
             }
-            #cursor-outline {
-                width: 40px; height: 40px;
-                border: 1px solid #ffffff;
-                transform: translate(-50%, -50%);
-                transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+            .cursor-hover #cursor-dot {
+                width: 64px; height: 64px;
+                background-color: rgba(24, 79, 53, 0.1);
+                border: 1px solid #184F35;
             }
-            .cursor-hover #cursor-outline {
-                width: 80px; height: 80px;
-                background-color: #ffffff;
-                border-color: transparent;
-            }
-            .cursor-hover #cursor-dot { opacity: 0; }
         }
-        @media (pointer: coarse) { body { cursor: auto; } }
     </style>
-<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.bottom-6{bottom:1.5rem}.left-0{left:0px}.right-6{right:1.5rem}.top-0{top:0px}.z-10{z-index:10}.z-20{z-index:20}.z-40{z-index:40}.z-\[60\]{z-index:60}.mx-auto{margin-left:auto;margin-right:auto}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-20{margin-bottom:5rem}.mb-32{margin-bottom:8rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-auto{margin-left:auto}.mt-12{margin-top:3rem}.mt-16{margin-top:4rem}.mt-2{margin-top:0.5rem}.mt-20{margin-top:5rem}.mt-32{margin-top:8rem}.mt-4{margin-top:1rem}.mt-8{margin-top:2rem}.mt-auto{margin-top:auto}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.aspect-\[3\/4\]{aspect-ratio:3/4}.h-1{height:0.25rem}.h-12{height:3rem}.h-\[1px\]{height:1px}.h-auto{height:auto}.h-full{height:100%}.h-screen{height:100vh}.min-h-\[50vh\]{min-height:50vh}.min-h-screen{min-height:100vh}.w-0{width:0px}.w-1\/2{width:50%}.w-12{width:3rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-4xl{max-width:56rem}.max-w-6xl{max-width:72rem}.max-w-7xl{max-width:80rem}.max-w-md{max-width:28rem}.flex-shrink-0{flex-shrink:0}.cursor-pointer{cursor:pointer}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-16{gap:4rem}.gap-2{gap:0.5rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.overflow-hidden{overflow:hidden}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-r{border-right-width:1px}.border-t{border-top-width:1px}.\!border-white{--tw-border-opacity:1 !important;border-color:rgb(255 255 255 / var(--tw-border-opacity, 1)) !important}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-gray-700{--tw-border-opacity:1;border-color:rgb(55 65 81 / var(--tw-border-opacity, 1))}.border-gray-800{--tw-border-opacity:1;border-color:rgb(31 41 55 / var(--tw-border-opacity, 1))}.border-offBlack{--tw-border-opacity:1;border-color:rgb(18 18 18 / var(--tw-border-opacity, 1))}.border-secondary{--tw-border-opacity:1;border-color:rgb(119 134 67 / var(--tw-border-opacity, 1))}.bg-\[\#161616\]{--tw-bg-opacity:1;background-color:rgb(22 22 22 / var(--tw-bg-opacity, 1))}.bg-gray-800{--tw-bg-opacity:1;background-color:rgb(31 41 55 / var(--tw-bg-opacity, 1))}.bg-lightGrey{--tw-bg-opacity:1;background-color:rgb(239 239 239 / var(--tw-bg-opacity, 1))}.bg-offBlack{--tw-bg-opacity:1;background-color:rgb(18 18 18 / var(--tw-bg-opacity, 1))}.bg-secondary{--tw-bg-opacity:1;background-color:rgb(119 134 67 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.object-cover{object-fit:cover}.p-10{padding:2.5rem}.p-6{padding:1.5rem}.\!px-6{padding-left:1.5rem !important;padding-right:1.5rem !important}.\!px-8{padding-left:2rem !important;padding-right:2rem !important}.\!py-3{padding-top:0.75rem !important;padding-bottom:0.75rem !important}.\!py-4{padding-top:1rem !important;padding-bottom:1rem !important}.px-20{padding-left:5rem;padding-right:5rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-32{padding-top:8rem;padding-bottom:8rem}.pb-12{padding-bottom:3rem}.pb-20{padding-bottom:5rem}.pb-6{padding-bottom:1.5rem}.pr-4{padding-right:1rem}.pt-12{padding-top:3rem}.pt-20{padding-top:5rem}.pt-32{padding-top:8rem}.pt-6{padding-top:1.5rem}.text-center{text-align:center}.text-right{text-align:right}.font-sans{font-family:Inter, sans-serif}.font-space{font-family:Space Grotesk, monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-6xl{font-size:3.75rem;line-height:1}.text-hero-lg{font-size:clamp(3.5rem, 9vw, 10rem)}.text-hero-md{font-size:clamp(2.5rem, 6vw, 6.5rem)}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-light{font-weight:300}.font-medium{font-weight:500}.font-normal{font-weight:400}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-\[1\.1\]{line-height:1.1}.leading-none{line-height:1}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.tracking-widest{letter-spacing:0.1em}.text-content{--tw-text-opacity:1;color:rgb(78 78 78 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-offBlack{--tw-text-opacity:1;color:rgb(18 18 18 / var(--tw-text-opacity, 1))}.text-secondary{--tw-text-opacity:1;color:rgb(119 134 67 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-0{opacity:0}.opacity-50{opacity:0.5}.opacity-80{opacity:0.8}.mix-blend-difference{mix-blend-mode:difference}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.outline-none{outline:2px solid transparent;outline-offset:2px}.grayscale{--tw-grayscale:grayscale(100%);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-700{transition-duration:700ms}.hover\:\!bg-white:hover{--tw-bg-opacity:1 !important;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1)) !important}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.hover\:\!text-black:hover{--tw-text-opacity:1 !important;color:rgb(0 0 0 / var(--tw-text-opacity, 1)) !important}.hover\:text-offBlack:hover{--tw-text-opacity:1;color:rgb(18 18 18 / var(--tw-text-opacity, 1))}.hover\:text-secondary:hover{--tw-text-opacity:1;color:rgb(119 134 67 / var(--tw-text-opacity, 1))}.hover\:grayscale-0:hover{--tw-grayscale:grayscale(0);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.group[open] .group-open\:rotate-45{--tw-rotate:45deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:text-secondary{--tw-text-opacity:1;color:rgb(119 134 67 / var(--tw-text-opacity, 1))}@media (min-width: 768px){.md\:absolute{position:absolute}.md\:bottom-24{bottom:6rem}.md\:right-20{right:5rem}.md\:mb-0{margin-bottom:0px}.md\:ml-auto{margin-left:auto}.md\:mt-0{margin-top:0px}.md\:mt-16{margin-top:4rem}.md\:mt-32{margin-top:8rem}.md\:mt-48{margin-top:12rem}.md\:block{display:block}.md\:flex{display:flex}.md\:hidden{display:none}.md\:h-screen{height:100vh}.md\:w-1\/2{width:50%}.md\:w-3\/4{width:75%}.md\:w-\[500px\]{width:500px}.md\:translate-y-12{--tw-translate-y:3rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.md\:translate-y-24{--tw-translate-y:6rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-center{align-items:center}.md\:gap-12{gap:3rem}.md\:border-none{border-style:none}.md\:px-12{padding-left:3rem;padding-right:3rem}.md\:px-20{padding-left:5rem;padding-right:5rem}.md\:py-0{padding-top:0px;padding-bottom:0px}.md\:py-48{padding-top:12rem;padding-bottom:12rem}.md\:py-8{padding-top:2rem;padding-bottom:2rem}.md\:text-right{text-align:right}.md\:text-2xl{font-size:1.5rem;line-height:2rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-7xl{font-size:4.5rem;line-height:1}}@media (min-width: 1024px){.lg\:flex{display:flex}}</style></head>
-<body class="cursor-hover" style="">
-    <!-- Preloader Cinématique -->
-    
+</head>
+<body class="selection:bg-sage selection:text-alabaster">
 
-    <!-- Éléments du curseur personnalisé -->
-    <div id="preloader" style="translate: none; rotate: none; scale: none; transform: translate(0%, -100%);">
-        <div class="flex justify-between items-end w-full">
-            <div class="font-space text-sm tracking-widest uppercase mb-4 opacity-50">Initializing System</div>
-            <div class="loader-counter"><span id="counter">100</span>%</div>
-        </div>
-        <div class="w-full h-1 bg-gray-800 mt-8 overflow-hidden">
-            <div id="loader-bar" class="h-full bg-secondary w-0" style="width: 100%;"></div>
-        </div>
-    </div><div id="cursor-dot" class="hidden md:block" style="translate: none; rotate: none; scale: none; transform: translate(-50%, -50%) translate(1392px, 695px);"></div>
-    <div id="cursor-outline" class="hidden md:block" style="translate: none; rotate: none; scale: none; transform: translate(-50%, -50%) translate(1392px, 695px);"></div>
+    <!-- Filtre SVG Tactile Craft global (Bruit de Perlin) -->
+    <svg class="noise-overlay">
+        <filter id="tactile-craft-grain">
+            <feTurbulence type="fractalNoise" baseFrequency="0.80" numOctaves="4" stitchTiles="stitch"/>
+            <feColorMatrix type="matrix" values="1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 0.15 0" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#tactile-craft-grain)"></rect>
+    </svg>
 
-    <!-- Couche de bruit visuel -->
-    <div class="noise-layer"></div>
+    <!-- Curseur interactif -->
+    <div id="cursor-dot" class="hidden md:block"></div>
 
-    <!-- Bouton de téléchargement direct du code source -->
-    
-
-    <!-- En-tête de navigation -->
-    <header class="fixed top-0 left-0 w-full p-6 md:px-12 md:py-8 flex justify-between items-center z-40 mix-blend-difference text-white">
-        <a href="#" class="magnetic font-space text-xl tracking-widest font-medium uppercase">Confluentics</a>
-        <nav class="hidden lg:flex gap-10 font-space uppercase text-xs tracking-widest">
-            <a href="#vision" class="magnetic hover:text-secondary transition-colors duration-300 py-2">Vision</a>
-            <a href="#expertise" class="magnetic hover:text-secondary transition-colors duration-300 py-2">Expertise</a>
-            <a href="#dimensions" class="magnetic hover:text-secondary transition-colors duration-300 py-2">Dimensions</a>
-            <a href="#symbiosis" class="magnetic hover:text-secondary transition-colors duration-300 py-2">Blueprint</a>
+    <!-- Navigation (Gouvernance Visuelle) -->
+    <header class="fixed top-0 left-0 w-full p-6 md:px-12 flex justify-between items-center z-50 bg-alabaster/90 backdrop-blur-md border-b border-charcoal/5">
+        <a href="#" class="logo-container flex items-center gap-4 group cursor-interact">
+            <!-- Morph-Mark SVG -->
+            <svg viewBox="0 0 100 100" class="confluentics-morph-mark" aria-label="Symbiose Homme-Machine">
+                <g class="matrix-grid-layer">
+                    <path class="rigid-grid" d="M10,50 L90,50 M50,10 L50,90 M20,20 L80,80 M20,80 L80,20" stroke="#111111" stroke-width="1.5" stroke-linecap="square" />
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#111111" stroke-width="2.5" />
+                </g>
+                <g class="biosphere-flow-layer">
+                    <path class="organic-data-flow" d="M75,20 C40,5 15,35 25,75 C30,95 65,95 85,75" fill="none" stroke="#184F35" stroke-width="6" stroke-linecap="round" />
+                </g>
+            </svg>
+            <span class="font-space font-medium text-base tracking-widest uppercase hidden md:block">Confluentics</span>
+        </a>
+        
+        <nav class="hidden lg:flex gap-12 font-space uppercase text-micro tracking-widest text-charcoal/70">
+            <a href="#infrastructure" class="hover:text-charcoal transition-colors cursor-interact">Infrastructure</a>
+            <a href="#arsenal" class="hover:text-charcoal transition-colors cursor-interact">Arsenal Data</a>
+            <a href="#sovereignty" class="hover:text-charcoal transition-colors cursor-interact">Souveraineté Cloud</a>
         </nav>
-        <a href="https://calendar.app.google/7UXQo1ajnsaWA4rj7" target="_blank" rel="noopener noreferrer" class="magnetic cta-btn !py-3 !px-6 !border-white text-white hover:!bg-white hover:!text-black hidden md:flex" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">
-            Systemic Audit
+
+        <a href="https://calendar.app.google/7UXQo1ajnsaWA4rj7" target="_blank" class="btn-tech btn-outline cursor-interact hidden md:flex">
+            <span>Accès Genesis</span>
         </a>
     </header>
 
     <main id="smooth-wrapper">
-        <div id="smooth-content">
+        <div id="smooth-content" class="pt-32">
             
-            <!-- 1. Section Héroïque (Accueil) -->
-            <section class="relative w-full min-h-screen flex flex-col justify-center px-6 md:px-20 pt-32 pb-20">
-                <div class="max-w-7xl mx-auto w-full z-10">
-                    <h1 class="font-light text-hero-lg leading-none tracking-tight">
-                        <span class="reveal-wrapper"><span class="reveal-text text-gradient" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0%);">orchestrating</span></span>
-                        <span class="reveal-wrapper"><span class="reveal-text" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0%);">the transition</span></span>
-                        <span class="reveal-wrapper"><span class="reveal-text text-right mt-2 md:mt-0" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0%);">to a <span class="text-gradient italic">regenerative</span></span></span>
-                        <span class="reveal-wrapper"><span class="reveal-text" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0%);">economy.</span></span>
+            <!-- Section Héroïque (Positionnement Startup IA) -->
+            <section class="relative w-full min-h-[85vh] flex flex-col justify-center px-6 md:px-12 xl:px-24">
+                <div class="max-w-6xl z-10">
+                    <div class="font-space text-sage text-micro uppercase tracking-widest mb-8 fade-up flex items-center gap-3">
+                        <span class="w-2 h-2 rounded-full bg-sage animate-pulse"></span>
+                        Agentic Solo-Startup // Fully Grounded
+                    </div>
+                    <h1 class="font-serif text-display-lg leading-[1.05] tracking-tight text-charcoal fade-up">
+                        La Couche d'Intelligence Nativement Ancrée sur <span class="italic text-sage">Google Cloud.</span>
                     </h1>
-                    <p class="font-sans text-lg md:text-2xl mt-16 md:absolute md:bottom-24 md:right-20 md:w-[500px] text-content leading-relaxed opacity-0 hero-fade" style="opacity: 1;">
-                        CONFLUENTICS leverages advanced AI systems to orchestrate the transition towards a macroeconomic model where profit is the byproduct of a thriving biosphere.
+                    <p class="font-sans text-h4 mt-12 max-w-2xl text-charcoal/80 leading-relaxed fade-up delay-100">
+                        CONFLUENTICS déploie un moteur d'orchestration multi-agents pour automatiser les décisions stratégiques complexes. Une infrastructure 100% "Grounded" qui convertit le chaos opérationnel en Négentropie économique.
                     </p>
                     
-                    <div class="mt-16 md:mt-32 opacity-0 hero-fade" style="opacity: 1;">
-                        <a href="#vision" class="magnetic cta-btn text-offBlack border-offBlack">
-                            <span>Discover our approach</span>
-                            <svg class="cta-arrow" width="34" height="13" viewBox="0 0 34 13" fill="none">
-                                <path d="M0 6.5H28" stroke="currentColor" stroke-width="2" stroke-dasharray="4 8 10 12"></path>
-                                <path d="M32.5859 6.5L29 10.0859V2.91406L32.5859 6.5Z" fill="currentColor"></path>
+                    <div class="mt-16 flex flex-col sm:flex-row gap-6 fade-up delay-200">
+                        <a href="https://calendar.app.google/7UXQo1ajnsaWA4rj7" target="_blank" class="btn-tech cursor-interact">
+                            <span>Déployer un Nœud (SVS)</span>
+                            <svg width="20" height="10" viewBox="0 0 20 10" fill="none">
+                                <path d="M15 1L19 5L15 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+                                <path d="M19 5L1 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
                             </svg>
+                        </a>
+                        <a href="#arsenal" class="btn-tech btn-outline cursor-interact">
+                            <span>Explorer l'Architecture Agentique</span>
                         </a>
                     </div>
                 </div>
             </section>
 
-            <!-- 2. Section Vision -->
-            <section id="vision" class="py-32 md:py-48 px-6 md:px-20 relative z-10 bg-white">
-                <div class="max-w-6xl mx-auto">
-                    <span class="font-space text-secondary uppercase text-sm tracking-widest block mb-8 fade-up" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">The Ontological Shift</span>
-                    <h2 class="font-light text-hero-md leading-[1.1] fade-up" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
-                        <span class="block text-gradient">from domination</span>
-                        <span class="block md:text-right">to <span class="italic">stewardship.</span></span>
-                    </h2>
-                    
-                    <div class="mt-20 grid grid-cols-1 md:grid-cols-2 gap-16 fade-up" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
-                        <div>
-                            <h3 class="font-space text-xl uppercase mb-6 text-offBlack">The Linear Fallacy</h3>
-                            <p class="text-lg text-content font-light leading-relaxed">
-                                The classical economy was designed by "engineers" who view the world as a linear machine (Take-Make-Waste). The Net-Zero paradigm, rooted in "Weak Sustainability", assumes natural capital is infinitely substitutable. This framework is fundamentally inadequate for civilizational and corporate survival in the 2030s.
-                            </p>
-                        </div>
-                        <div>
-                            <h3 class="font-space text-xl uppercase mb-6 text-secondary">The Holistic Approach</h3>
-                            <p class="text-lg text-offBlack font-normal leading-relaxed">
-                                We see the economy as a living organism. As Principal Systems Strategists, we do not simply "fix" a company; we cultivate the conditions for its systemic health. We architect Net-Positive frameworks where human potential, biosphere integrity, and financial returns operate in absolute symbiosis.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Bandeau Défilant (Marquee) -->
-            <div class="marquee-container">
+            <!-- Marquee (Preuve Sociale Technologique - Emphasis Google Cloud) -->
+            <div class="marquee-container fade-up">
                 <div class="marquee-content">
-                    <!-- Dupliqué pour créer la boucle infinie parfaite -->
-                    <div class="marquee-item">
-                        <span>REGENERATIVE ECONOMY</span> <span>✦</span> <span>SYSTEMIC AUDIT</span> <span>✦</span> <span>AI SYMBIOSIS</span> <span>✦</span> <span>NET-POSITIVE ARCHITECTURE</span> <span>✦</span>
+                    <div class="marquee-item text-sage">
+                        <span>// FULLY GROUNDED ON GOOGLE CLOUD</span> <span>✦</span> <span>GEN APP BUILDER INTEGRATION</span> <span>✦</span> <span>275 NOTEBOOKS PROPRIÉTAIRES</span> <span>✦</span> <span>SAMSUNG KNOX HARDWARE ISOLATION</span> <span>✦</span> <span>GEMINI ENTERPRISE AGENT PLATFORM</span> <span>✦</span>
                     </div>
-                    <div class="marquee-item">
-                        <span>REGENERATIVE ECONOMY</span> <span>✦</span> <span>SYSTEMIC AUDIT</span> <span>✦</span> <span>AI SYMBIOSIS</span> <span>✦</span> <span>NET-POSITIVE ARCHITECTURE</span> <span>✦</span>
+                    <div class="marquee-item text-sage">
+                        <span>// FULLY GROUNDED ON GOOGLE CLOUD</span> <span>✦</span> <span>GEN APP BUILDER INTEGRATION</span> <span>✦</span> <span>275 NOTEBOOKS PROPRIÉTAIRES</span> <span>✦</span> <span>SAMSUNG KNOX HARDWARE ISOLATION</span> <span>✦</span> <span>GEMINI ENTERPRISE AGENT PLATFORM</span> <span>✦</span>
                     </div>
                 </div>
             </div>
 
-            <!-- 3. Section Expertise (Bento Box avec Spotlight) -->
-            <section id="expertise" class="py-32 px-6 md:px-20 relative z-10">
+            <!-- Infrastructure Core -->
+            <section id="infrastructure" class="py-32 px-6 md:px-12 xl:px-24">
                 <div class="max-w-7xl mx-auto">
-                    <span class="font-space text-secondary uppercase text-sm tracking-widest block mb-8 fade-up" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">Core Capabilities</span>
-                    <h2 class="font-light text-5xl md:text-7xl leading-tight mb-20 fade-up" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
-                        Architecting <span class="text-gradient italic">Resilience.</span>
+                    <h2 class="font-serif text-display leading-tight mb-20 fade-up max-w-4xl">
+                        Une architecture logicielle conçue pour éradiquer la <span class="italic text-sage">dette cognitive.</span>
                     </h2>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        
-                        <!-- Carte 1 -->
-                        <div class="bento-card p-10 rounded-2xl fade-up" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px); --mouse-x: 1183.599998474121px; --mouse-y: 118.8499984741211px;">
-                            <div class="w-12 h-12 rounded-full border border-secondary flex items-center justify-center mb-8 text-secondary font-space">01</div>
-                            <h3 class="text-3xl font-light mb-4">Systemic Audits</h3>
-                            <p class="text-content leading-relaxed">
-                                Comprehensive evaluation of your organizational metabolism. We map your energy, material, and information flows to identify linear vulnerabilities and uncover regenerative opportunities.
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Module 1 -->
+                        <div class="infra-card p-10 fade-up">
+                            <div class="font-space text-sage text-micro mb-6">MODULE 01</div>
+                            <h3 class="font-serif text-h2 mb-6">Systemic Vitality Scan (SVS)</h3>
+                            <p class="font-sans text-base text-charcoal/70 leading-relaxed">
+                                Ingestion algorithmique autonome. Le moteur SVS cartographie instantanément votre métabolisme organisationnel (Scope 3, Supply Chain) pour quantifier les fuites énergétiques financières.
                             </p>
                         </div>
 
-                        <!-- Carte 2 -->
-                        <div class="bento-card p-10 rounded-2xl fade-up md:translate-y-12" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px); --mouse-x: 748.9375px; --mouse-y: 118.8499984741211px;">
-                            <div class="w-12 h-12 rounded-full border border-secondary flex items-center justify-center mb-8 text-secondary font-space">02</div>
-                            <h3 class="text-3xl font-light mb-4 text-gradient">AI-Driven Symbiosis</h3>
-                            <p class="text-content leading-relaxed">
-                                Deployment of advanced Digital Twins to simulate thermodynamic scenarios. We utilize AI as a cognitive prosthesis to optimize industrial symbiosis.
+                        <!-- Module 2 -->
+                        <div class="infra-card p-10 fade-up delay-100">
+                            <div class="font-space text-sage text-micro mb-6">MODULE 02</div>
+                            <h3 class="font-serif text-h2 mb-6">Digital Twin (GCP Native)</h3>
+                            <p class="font-sans text-base text-charcoal/70 leading-relaxed">
+                                Modélisation de jumeaux numériques hébergée sur Google Cloud. Nos agents autonomes simulent des millions de scénarios thermodynamiques pour garantir votre résilience stratégique.
                             </p>
                         </div>
 
-                        <!-- Carte 3 -->
-                        <div class="bento-card p-10 rounded-2xl fade-up md:translate-y-24" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px); --mouse-x: 314.27496337890625px; --mouse-y: 118.8499984741211px;">
-                            <div class="w-12 h-12 rounded-full border border-secondary flex items-center justify-center mb-8 text-secondary font-space">03</div>
-                            <h3 class="text-3xl font-light mb-4">Net-Positive Strategy</h3>
-                            <p class="text-content leading-relaxed">
-                                Long-term strategic realignment. We guide executive boards in shifting from quarterly extraction metrics to deep-time value creation, ensuring resilience.
+                        <!-- Module 3 -->
+                        <div class="infra-card p-10 fade-up delay-200 bg-charcoal text-alabaster border-charcoal">
+                            <div class="font-space text-sage text-micro mb-6">MODULE 03</div>
+                            <h3 class="font-serif text-h2 mb-6">Négentropie Distribuée</h3>
+                            <p class="font-sans text-base text-alabaster/70 leading-relaxed">
+                                Règle d'exécution stricte (50/20/30). 50% de la valeur débloquée augmente votre rentabilité nette, 20% sont contractuellement réinvestis dans la biosphère (Couche Zéro).
                             </p>
                         </div>
-
                     </div>
                 </div>
             </section>
 
-            <!-- 4. Section Les 5 Dimensions (Horizontal Scroll) -->
-            <section id="dimensions" class="relative bg-offBlack text-white overflow-hidden mt-32 md:mt-48">
-                <div class="pin-container relative w-full" id="dimensions-container">
-                    
-                    <!-- Gauche : Titre Fixe -->
-                    <div class="pin-spacer" style="order: 0; place-self: auto; grid-area: auto; z-index: 20; float: none; flex-shrink: 1; display: flex; margin: 0px; inset: 0px 760.4px 2188.8px 0px; position: absolute; flex-basis: auto; overflow: visible; box-sizing: border-box; width: 760px; height: 730px; padding: 0px;"><div class="hidden md:flex absolute top-0 left-0 w-1/2 h-screen flex-col justify-center px-20 border-r border-gray-800 z-20 bg-offBlack" id="dimensions-left" style="translate: none; rotate: none; scale: none; inset: 0px auto auto 0px; margin: 0px; max-width: 760.4px; width: 760.4px; max-height: 729.6px; height: 729.6px; padding: 0px 80px; transform: translate(0px, 2188px);">
-                        <span class="font-space text-secondary uppercase text-sm tracking-widest block mb-6">The Vital Foundations</span>
-                        <h2 class="font-light text-6xl leading-[1.1]">
-                            The invisible<br>
-                            <span class="text-gradient font-normal italic">dimensions.</span>
+            <!-- La Barrière Épistémologique (L'Arsenal - Focus Enterprise Grounding) -->
+            <section id="arsenal" class="py-32 px-6 md:px-12 xl:px-24 bg-white border-y border-charcoal/5 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
+                    <div class="lg:w-1/2 z-10">
+                        <div class="font-space text-sage text-micro uppercase tracking-widest mb-8 fade-up">Graphe de Connaissances & Enterprise Search</div>
+                        <h2 class="font-serif text-display leading-[1.1] mb-8 fade-up">
+                            La Bibliothèque d'Alexandrie 2.0
                         </h2>
-                        <p class="mt-8 text-lg text-gray-400 max-w-md">
-                            Before building the structure, we stabilize the worldview. These five dimensions form the architecture of systemic vitality.
+                        <p class="font-sans text-h4 text-charcoal/80 leading-relaxed mb-8 fade-up">
+                            L'hallucination algorithmique est le risque majeur des LLMs grand public. CONFLUENTICS érige une barrière technologique via l'ancrage massif de données (Grounding).
                         </p>
-                        <!-- Barre de progression -->
-                        <div class="w-full h-[1px] bg-gray-800 mt-12 relative">
-                            <div class="absolute top-0 left-0 h-full bg-secondary w-0" id="dim-progress" style="width: 100%;"></div>
-                        </div>
-                    </div></div>
-
-                    <!-- Droite : Cartes défilantes -->
-                    <div class="w-full md:w-1/2 md:ml-auto relative z-10" id="dimensions-right">
-                        
-                        <!-- Titre mobile -->
-                        <div class="md:hidden px-6 pt-32 pb-12">
-                            <span class="font-space text-secondary uppercase text-sm tracking-widest block mb-4">The Vital Foundations</span>
-                            <h2 class="font-light text-4xl leading-[1.1]">The invisible <span class="text-gradient italic">dimensions.</span></h2>
-                        </div>
-
-                        <!-- Dimension Cards -->
-                        <div class="h-auto md:h-screen flex flex-col justify-center px-6 md:px-20 py-20 md:py-0 border-b border-gray-800 bg-offBlack">
-                            <span class="font-space text-secondary text-sm mb-4 block">DIMENSION 01</span>
-                            <h3 class="text-4xl md:text-5xl font-light mb-6">Ethics &amp; Philosophy</h3>
-                            <p class="text-lg text-gray-400 leading-relaxed">
-                                The shift from Ego to Eco. Every decision made must integrate the impact on the "7th generation". The economy serves life, recognizing the intrinsic value of the biotic community.
-                            </p>
-                        </div>
-                        
-                        <div class="h-auto md:h-screen flex flex-col justify-center px-6 md:px-20 py-20 md:py-0 border-b border-gray-800 bg-[#161616]">
-                            <span class="font-space text-secondary text-sm mb-4 block">DIMENSION 02</span>
-                            <h3 class="text-4xl md:text-5xl font-light mb-6">Social Resiliance</h3>
-                            <p class="text-lg text-gray-400 leading-relaxed">
-                                From "Human Resources" to "Human Potential". A regenerative system cannot sustain extreme inequalities. We foster local sovereignty against distant macroeconomic shocks.
-                            </p>
-                        </div>
-
-                        <div class="h-auto md:h-screen flex flex-col justify-center px-6 md:px-20 py-20 md:py-0 border-b border-gray-800 bg-offBlack">
-                            <span class="font-space text-secondary text-sm mb-4 block">DIMENSION 03</span>
-                            <h3 class="text-4xl md:text-5xl font-light mb-6 text-gradient">Cognitive Sythesis</h3>
-                            <p class="text-lg text-gray-400 leading-relaxed">
-                                Systems Intelligence. Humans alone cannot perceive global feedback loops. AI becomes our "cognitive prosthesis" (symbiote) to see the invisible and coordinate Data as a Commons.
-                            </p>
-                        </div>
-
-                        <div class="h-auto md:h-screen flex flex-col justify-center px-6 md:px-20 py-20 md:py-0 border-b border-gray-800 bg-[#161616]">
-                            <span class="font-space text-secondary text-sm mb-4 block">DIMENSION 04</span>
-                            <h3 class="text-4xl md:text-5xl font-light mb-6">Temporal Depth</h3>
-                            <p class="text-lg text-gray-400 leading-relaxed">
-                                "Deep Time". The current economy is obsessed with the financial quarter. The regenerative economy operates in deep time. "Patient" investment guarantees stable returns based on system health.
-                            </p>
-                        </div>
-
-                        <div class="h-auto md:h-screen flex flex-col justify-center px-6 md:px-20 py-20 md:py-0 bg-offBlack border-b md:border-none border-gray-800">
-                            <span class="font-space text-secondary text-sm mb-4 block">DIMENSION 05</span>
-                            <h3 class="text-4xl md:text-5xl font-light mb-6">Political Governance</h3>
-                            <p class="text-lg text-gray-400 leading-relaxed">
-                                Governance of the Commons. Decentralization and subsidiarity. Nature teaches us that symbiosis is more effective than total war. Companies evolve into co-inhabitants.
-                            </p>
-                        </div>
-
+                        <ul class="font-sans text-base text-charcoal/70 space-y-6 fade-up">
+                            <li class="flex gap-4 items-start">
+                                <span class="font-space text-sage">01/</span>
+                                <span><strong>Ingestion MECE :</strong> 275 Notebooks sanctuarisés structurant la connaissance mondiale de manière mutuellement exclusive et collectivement exhaustive.</span>
+                            </li>
+                            <li class="flex gap-4 items-start">
+                                <span class="font-space text-sage">02/</span>
+                                <span><strong>Vérités Sources :</strong> 150 000 documents premium filtrés de tout bruit médiatique. Aucune opinion, uniquement de la donnée systémique.</span>
+                            </li>
+                            <li class="flex gap-4 items-start">
+                                <span class="font-space text-sage">03/</span>
+                                <span><strong>Fully Grounded sur Google :</strong> L'intégralité de notre graphe est indexée via <em>Google Cloud Gen App Builder</em>. Notre moteur Gemini 3 Pro est strictement ancré à ces documents, éliminant mathématiquement les hallucinations.</span>
+                            </li>
+                        </ul>
                     </div>
-                </div>
-            </section>
-
-            <!-- 5. Section Blueprint (Images Reveal & Accordéons) -->
-            <section id="symbiosis" class="py-32 md:py-48 px-6 md:px-20 bg-white relative">
-                <div class="max-w-7xl mx-auto">
-                    <span class="font-space text-secondary uppercase text-sm tracking-widest block mb-8 fade-up" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">Sectoral Symbiosis</span>
-                    <h2 class="font-light text-hero-md leading-[1.1] mb-20 fade-up" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
-                        <span class="block">The triad of</span>
-                        <span class="block text-gradient">Circulation.</span>
-                    </h2>
-
-                    <!-- Grille d'images Parallaxe (Effet Reveal) -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
-                        <div class="overflow-hidden rounded-2xl aspect-[3/4] img-container">
-                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="AI data flows" class="w-full h-full object-cover img-parallax img-reveal" style="clip-path: inset(0% 0px 0px); translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">
-                            <div class="mt-4 font-space text-sm text-content font-medium opacity-0 hero-fade" style="opacity: 1;">01. INFORMATION (AI)</div>
-                        </div>
-                        <div class="overflow-hidden rounded-2xl aspect-[3/4] md:mt-16 img-container">
-                            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="Regenerative nature" class="w-full h-full object-cover img-parallax img-reveal filter grayscale hover:grayscale-0 transition-all duration-700" style="clip-path: inset(0% 0px 0px); translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">
-                            <div class="mt-4 font-space text-sm text-content font-medium opacity-0 hero-fade" style="opacity: 1;">02. MATTER (Loops)</div>
-                        </div>
-                        <div class="overflow-hidden rounded-2xl aspect-[3/4] md:mt-32 img-container">
-                            <img src="https://images.unsplash.com/photo-1506443432602-ac2fcd6f54e0?q=80&amp;w=1000&amp;auto=format&amp;fit=crop" alt="Energy flow" class="w-full h-full object-cover img-parallax img-reveal" style="clip-path: inset(0% 0px 0px); translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">
-                            <div class="mt-4 font-space text-sm text-content font-medium opacity-0 hero-fade" style="opacity: 1;">03. ENERGY (Flows)</div>
-                        </div>
-                    </div>
-
-                    <!-- Accordéons -->
-                    <div class="w-full md:w-3/4 ml-auto border-t border-gray-200 pt-12 fade-up" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
-                        <h3 class="text-3xl font-light mb-12">The MultiCapital Scorecard</h3>
-                        
-                        <details class="group border-b border-gray-200 pb-6 mb-6 cursor-pointer magnetic" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">
-                            <summary class="flex justify-between items-center font-space text-xl md:text-2xl uppercase outline-none">
-                                <span class="group-hover:text-secondary transition-colors pr-4">Digital Twins &amp; AI Catalyst</span>
-                                <span class="text-secondary text-2xl group-open:rotate-45 transition-transform flex-shrink-0">+</span>
-                            </summary>
-                            <div class="pt-6 text-content text-lg leading-relaxed font-sans">
-                                Artificial Intelligence acts as the systemic governor. By creating Digital Twins, CONFLUENTICS simulates billions of thermodynamic scenarios to optimize industrial symbiosis.
-                            </div>
-                        </details>
-
-                        <details class="group border-b border-gray-200 pb-6 mb-6 cursor-pointer magnetic" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">
-                            <summary class="flex justify-between items-center font-space text-xl md:text-2xl uppercase outline-none">
-                                <span class="group-hover:text-secondary transition-colors pr-4">Biological Cycle (Cascades)</span>
-                                <span class="text-secondary text-2xl group-open:rotate-45 transition-transform flex-shrink-0">+</span>
-                            </summary>
-                            <div class="pt-6 text-content text-lg leading-relaxed font-sans">
-                                Cascading use of biomass. From green chemistry to biomaterials, we ensure nutrients safely return to the biosphere to restore soils, never breaching planetary boundaries.
-                            </div>
-                        </details>
-
-                        <details class="group border-b border-gray-200 pb-6 mb-6 cursor-pointer magnetic" open="" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">
-                            <summary class="flex justify-between items-center font-space text-xl md:text-2xl uppercase outline-none">
-                                <span class="group-hover:text-secondary transition-colors pr-4">Technical Cycle (Infinite Loop)</span>
-                                <span class="text-secondary text-2xl group-open:rotate-45 transition-transform flex-shrink-0">+</span>
-                            </summary>
-                            <div class="pt-6 text-content text-lg leading-relaxed font-sans">
-                                Maintaining critical minerals and synthetic polymers at their highest structural integrity. From predictive maintenance to remanufacturing, minimizing entropy generation.
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 6. Section Appel à l'action final (CTA) -->
-            <section id="contact" class="py-32 md:py-48 px-6 md:px-20 bg-lightGrey text-offBlack relative z-10 text-center">
-                <div class="max-w-4xl mx-auto fade-up" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
-                    <span class="font-space text-secondary uppercase text-sm tracking-widest block mb-8">Take Action</span>
-                    <h2 class="font-light text-5xl md:text-7xl leading-tight mb-12">
-                        Find the equilibrium between <span class="text-gradient italic">Efficiency</span> and <span class="text-gradient italic">Resilience.</span>
-                    </h2>
-                    <p class="text-xl text-content mb-16 max-w-2xl mx-auto">
-                        Do not let your linear architecture become a fatal vulnerability in the 2030s. Initiate the Net-Positive transition with a comprehensive systemic audit.
-                    </p>
                     
-                    <a href="https://calendar.app.google/7UXQo1ajnsaWA4rj7" target="_blank" rel="noopener noreferrer" class="magnetic cta-btn inverse text-lg !px-8 !py-4 shadow-xl">
-                        <span>Book a consultation</span>
-                        <svg class="cta-arrow" width="34" height="13" viewBox="0 0 34 13" fill="none">
-                            <path d="M0 6.5H28" stroke="currentColor" stroke-width="2" stroke-dasharray="4 8 10 12"></path>
-                            <path d="M32.5859 6.5L29 10.0859V2.91406L32.5859 6.5Z" fill="currentColor"></path>
+                    <div class="lg:w-1/2 w-full relative h-[500px] bg-charcoal p-8 fade-up flex flex-col justify-between">
+                        <!-- Data Visualisation abstraite CSS -->
+                        <div class="font-space text-sage text-micro mb-4 border-b border-sage/30 pb-4">VERTEX AI INDEX // SYSTEM STATUS: OPTIMAL</div>
+                        <div class="space-y-4 flex-grow flex flex-col justify-center">
+                            <div class="flex justify-between items-center text-alabaster font-space text-micro">
+                                <span>CERCLE 1: SAGESSE MACRO (Grounded)</span>
+                                <span class="text-sage">15 N-BOOKS [4.5k sources]</span>
+                            </div>
+                            <div class="w-full h-1 bg-alabaster/10"><div class="h-full bg-sage w-[15%]"></div></div>
+                            
+                            <div class="flex justify-between items-center text-alabaster font-space text-micro mt-4">
+                                <span>CERCLE 2: MAILLAGE GLOBAL (Grounded)</span>
+                                <span class="text-sage">210 N-BOOKS [63k sources]</span>
+                            </div>
+                            <div class="w-full h-1 bg-alabaster/10"><div class="h-full bg-sage w-[80%]"></div></div>
+
+                            <div class="flex justify-between items-center text-alabaster font-space text-micro mt-4">
+                                <span>CERCLE 3: VERTICALES (Grounded)</span>
+                                <span class="text-sage">50 N-BOOKS [15k sources]</span>
+                            </div>
+                            <div class="w-full h-1 bg-alabaster/10"><div class="h-full bg-sage w-[40%]"></div></div>
+                        </div>
+                        <div class="font-space text-alabaster/50 text-micro text-right pt-4 border-t border-alabaster/10">CAPACITÉ D'INGESTION CLOUD: 150,000 DATA NODES</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Souveraineté Bimodale (L'Armure - Focus Google/Samsung) -->
+            <section id="sovereignty" class="py-32 px-6 md:px-12 xl:px-24 bg-charcoal text-alabaster relative">
+                <div class="max-w-4xl mx-auto text-center mb-24 fade-up">
+                    <span class="font-space text-sage text-micro uppercase tracking-widest block mb-8">Sécurité Zero-Trust & Infrastructure Cloud</span>
+                    <h2 class="font-serif text-display leading-tight mb-8">
+                        La Souveraineté Bimodale.
+                    </h2>
+                    <p class="font-sans text-h4 text-alabaster/70 leading-relaxed">
+                        Confluentics ne se contente pas d'utiliser l'IA. Nous opérons une infrastructure Cloud native hautement sécurisée pour garantir l'intégrité absolue des données de l'élite corporative.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-6xl mx-auto">
+                    <div class="border-t border-sage pt-8 fade-up">
+                        <h3 class="font-space text-h3 text-sage mb-6">01 // Google Cloud Native & Grounding</h3>
+                        <p class="font-sans text-base text-alabaster/80 leading-relaxed mb-6">
+                            L'orchestration de nos agents est propulsée par la <strong>Gemini Enterprise Agent Platform</strong>. Confluentics est une architecture "Fully Grounded" : les raisonnements de l'IA sont ancrés à la source via l'infrastructure Google Cloud.
+                        </p>
+                        <p class="font-sans text-base text-alabaster/80 leading-relaxed">
+                            <strong>Data Intimacy :</strong> Le protocole Client-Side Encryption (CSE) de Workspace garantit que vous détenez seul les clés cryptographiques. Zéro interception tierce.
+                        </p>
+                    </div>
+
+                    <div class="border-t border-sage pt-8 fade-up delay-100">
+                        <h3 class="font-space text-h3 text-sage mb-6">02 // Samsung Knox Hardware Isolation</h3>
+                        <p class="font-sans text-base text-alabaster/80 leading-relaxed mb-6">
+                            La défense périmétrique physique. L'isolation matérielle <strong>Knox Vault</strong> (certifiée CC EAL 4/5+) protège les accès aux nœuds d'infrastructure contre toute injection de failles.
+                        </p>
+                        <p class="font-sans text-base text-alabaster/80 leading-relaxed">
+                            <strong>On-Device AI :</strong> Les données hautement sensibles ne quittent jamais le KEEP (Knox Enhanced Encrypted Protection). Intelligence strictement souveraine.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Final -->
+            <section class="py-32 px-6 text-center bg-white border-b border-charcoal/5">
+                <div class="max-w-3xl mx-auto fade-up">
+                    <h2 class="font-serif text-h1 mb-8">Initier la Séquence Genesis.</h2>
+                    <p class="font-sans text-h4 text-charcoal/70 mb-12">
+                        Les licences d'infrastructure Cloud sont strictement limitées à un Fractional Executive (CSO/CAIO) par nation souveraine. Sécurisez votre monopole territorial.
+                    </p>
+                    <a href="https://calendar.app.google/7UXQo1ajnsaWA4rj7" target="_blank" class="btn-tech cursor-interact">
+                        <span>Accéder à l'Infrastructure SVS</span>
+                        <svg width="20" height="10" viewBox="0 0 20 10" fill="none">
+                            <path d="M15 1L19 5L15 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+                            <path d="M19 5L1 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
                         </svg>
                     </a>
                 </div>
             </section>
 
-            <!-- 7. Pied de page (Mega Footer) -->
-            <footer class="pt-20 pb-6 px-6 md:px-12 bg-lightGrey relative z-10 overflow-hidden flex flex-col justify-between min-h-[50vh]">
-                
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center font-space text-sm uppercase text-content mb-20 z-20">
-                    <div class="mb-8 md:mb-0">
-                        © 2026 CONFLUENTICS.<br>All Rights Reserved.
-                    </div>
-                    <div class="flex flex-col md:flex-row gap-4 md:gap-12">
-                        <a href="https://www.linkedin.com/in/ange-daniel-soro-a60974229" target="_blank" rel="noopener noreferrer" class="magnetic hover:text-secondary transition-colors">LinkedIn</a>
-                        <a href="#" class="magnetic hover:text-secondary transition-colors">Privacy Policy</a>
-                        <a href="#" class="magnetic hover:text-secondary transition-colors">Legal Notice</a>
-                    </div>
+            <!-- Footer MVB -->
+            <footer class="py-12 px-6 md:px-12 bg-alabaster flex flex-col md:flex-row justify-between items-center gap-8 font-space text-micro text-charcoal/50 uppercase">
+                <div>© 2026 CONFLUENTICS INC. // Agentic Protocol</div>
+                <div class="flex gap-8">
+                    <a href="https://www.linkedin.com/in/ange-daniel-soro-a60974229" target="_blank" class="hover:text-charcoal transition-colors cursor-interact">LinkedIn</a>
+                    <a href="#" class="hover:text-charcoal transition-colors cursor-interact">Legal</a>
                 </div>
-
-                <!-- Typographie Géante finale -->
-                <div class="w-full text-center mt-auto z-10 footer-logo-wrap" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
-                    <span class="mega-footer-text font-space text-gradient opacity-80">CONFLUENTICS</span>
-                </div>
+                <div class="text-sage">SYSTEM STATUS: NEgENTROPIC</div>
             </footer>
 
         </div>
     </main>
 
-    <!-- Scripts Ultra-Premium -->
+    <!-- Scripts Logiques & Animations -->
     <script>
-        // --- 1. PRELOADER & TEXT REVEAL INITIAL ---
-        const tlPreloader = gsap.timeline();
-        let counterElement = document.getElementById("counter");
-        let loaderBar = document.getElementById("loader-bar");
-        let count = 0;
-
-        // Faux chargement (0 à 100%)
-        let interval = setInterval(() => {
-            count += Math.floor(Math.random() * 15) + 5;
-            if(count > 100) count = 100;
-            counterElement.innerText = count;
-            loaderBar.style.width = count + "%";
-            
-            if(count === 100) {
-                clearInterval(interval);
-                // Lancer l'animation de sortie du preloader
-                tlPreloader.to("#preloader", {
-                    yPercent: -100,
-                    duration: 1,
-                    ease: "power4.inOut",
-                    delay: 0.2
-                })
-                // Dévoiler le texte Héroïque
-                .to(".reveal-text", {
-                    y: "0%",
-                    duration: 1.2,
-                    stagger: 0.15,
-                    ease: "power4.out"
-                }, "-=0.5")
-                // Faire apparaître les sous-titres et boutons
-                .to(".hero-fade", {
-                    opacity: 1,
-                    duration: 1,
-                    stagger: 0.2,
-                    ease: "power2.out"
-                }, "-=0.8");
-            }
-        }, 80);
-
-        // --- 2. SMOOTH SCROLL (Lenis) ---
+        // 1. Initialisation de Lenis (Smooth Scroll)
         const lenis = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
@@ -644,121 +467,34 @@
         }
         requestAnimationFrame(raf);
 
-        // --- 3. GSAP SCROLL ANIMATIONS ---
+        // 2. GSAP Scroll Animations (Néo-Minimalisme Reveal)
         gsap.registerPlugin(ScrollTrigger);
-        lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time)=>{ lenis.raf(time * 1000); });
-        gsap.ticker.lagSmoothing(0);
-
-        // Fade-Up standard
+        
         document.querySelectorAll('.fade-up').forEach((el) => {
-            gsap.fromTo(el, { y: 60, opacity: 0 }, { 
-                y: 0, opacity: 1, duration: 1.2, ease: "power3.out",
-                scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
-            });
-        });
-
-        // Image Reveal (Clip-path) & Parallaxe interne
-        document.querySelectorAll('.img-container').forEach(container => {
-            let img = container.querySelector('.img-reveal');
-            
-            // Reveal de l'image (masque qui s'ouvre)
-            gsap.to(img, {
-                clipPath: "inset(0% 0 0 0)",
-                duration: 1.5,
-                ease: "power4.inOut",
-                scrollTrigger: { trigger: container, start: "top 80%" }
-            });
-
-            // Parallaxe très doux sur l'image elle-même (zoom out lent)
-            gsap.fromTo(img, 
-                { scale: 1.2 }, 
-                { scale: 1, ease: "none", scrollTrigger: { trigger: container, start: "top bottom", end: "bottom top", scrub: true } }
+            gsap.fromTo(el, 
+                { y: 40, opacity: 0 }, 
+                { 
+                    y: 0, opacity: 1, duration: 1.2, ease: "power3.out",
+                    scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
+                }
             );
         });
 
-        // Épinglage horizontal de la section "Dimensions" (Desktop)
-        let mm = gsap.matchMedia();
-        mm.add("(min-width: 768px)", () => {
-            let tlDimensions = gsap.timeline({
-                scrollTrigger: {
-                    trigger: "#dimensions-container",
-                    start: "top top",
-                    end: "bottom bottom",
-                    pin: "#dimensions-left",
-                    pinSpacing: false,
-                    scrub: true
-                }
-            });
-            // Animer la barre de progression liée au scroll horizontal
-            tlDimensions.to("#dim-progress", { width: "100%", ease: "none" });
-        });
-
-        // Apparition du Mega-Footer depuis le bas
-        gsap.fromTo(".footer-logo-wrap", 
-            { yPercent: 50, opacity: 0, scale: 0.9 },
-            { yPercent: 0, opacity: 1, scale: 1, duration: 1.5, ease: "power4.out", scrollTrigger: { trigger: "footer", start: "top 90%" } }
-        );
-
-        // --- 4. INTERACTIONS UI UX ---
-
-        // Accordéons
-        const details = document.querySelectorAll("details");
-        details.forEach((targetDetail) => {
-            targetDetail.addEventListener("click", () => {
-                details.forEach((detail) => {
-                    if (detail !== targetDetail) detail.removeAttribute("open");
-                });
-            });
-        });
-
-        // Effet Spotlight (Bento Cards)
-        document.getElementById("expertise").addEventListener("mousemove", e => {
-            for(const card of document.querySelectorAll(".bento-card")) {
-                const rect = card.getBoundingClientRect(),
-                      x = e.clientX - rect.left,
-                      y = e.clientY - rect.top;
-                card.style.setProperty("--mouse-x", `${x}px`);
-                card.style.setProperty("--mouse-y", `${y}px`);
-            };
-        });
-
-        // Curseur Custom Blend Mode & Magnétisme
+        // 3. Custom Cursor Blend Mode
         if (window.matchMedia("(pointer: fine)").matches) {
             const cursorDot = document.getElementById("cursor-dot");
-            const cursorOutline = document.getElementById("cursor-outline");
             
-            // Mise à jour de la position
             window.addEventListener("mousemove", (e) => {
-                gsap.set(cursorDot, { x: e.clientX, y: e.clientY }); 
-                gsap.to(cursorOutline, { x: e.clientX, y: e.clientY, duration: 0.15, ease: "power2.out" }); 
+                gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.1, ease: "power2.out" }); 
             });
 
-            // Gérer l'état de "Hover" sur les éléments cliquables
-            const interactables = document.querySelectorAll("a, button, details summary");
+            // Effet d'expansion sur les éléments interactifs
+            const interactables = document.querySelectorAll(".cursor-interact");
             interactables.forEach(el => {
                 el.addEventListener("mouseenter", () => document.body.classList.add("cursor-hover"));
                 el.addEventListener("mouseleave", () => document.body.classList.remove("cursor-hover"));
             });
-
-            // Effet d'attraction magnétique sur les classes .magnetic
-            const magneticElements = document.querySelectorAll(".magnetic");
-            magneticElements.forEach(el => {
-                el.addEventListener("mousemove", (e) => {
-                    const rect = el.getBoundingClientRect();
-                    const x = e.clientX - rect.left - rect.width / 2;
-                    const y = e.clientY - rect.top - rect.height / 2;
-                    // Attraction modérée (0.3)
-                    gsap.to(el, { x: x * 0.3, y: y * 0.3, duration: 0.3, ease: "power2.out" });
-                });
-                el.addEventListener("mouseleave", () => {
-                    // Rebond élastique au relâchement
-                    gsap.to(el, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" }); 
-                });
-            });
         }
-
-        
     </script>
-
-</body></html>
+</body>
+</html>
