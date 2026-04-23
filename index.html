@@ -29,7 +29,7 @@
                         charcoalLight: '#1A1A1A',
                         alabaster: '#F7F7F5',
                         sage: '#184F35',
-                        gold: '#D4AF37', /* Accent subtil pour le nouveau logo */
+                        gold: '#D4AF37',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -37,7 +37,6 @@
                         space: ['Space Grotesk', 'monospace'],
                     },
                     fontSize: {
-                        // Échelle modulaire ratio 1.25 (Base 16px)
                         'micro': '13px',
                         'base': '16px',
                         'h4': '20px',
@@ -48,7 +47,6 @@
                         'display-lg': 'clamp(3rem, 7vw, 5rem)',
                     },
                     spacing: {
-                        // Grille de 8px
                         '04': '32px',
                         '08': '64px',
                         '12': '96px',
@@ -62,8 +60,8 @@
     <style>
         /* Base & Néo-Minimalisme 2.0 */
         body {
-            background-color: #F7F7F5; /* Albâtre */
-            color: #111111; /* Fusain */
+            background-color: #F7F7F5;
+            color: #111111;
             overflow-x: hidden;
             cursor: none;
         }
@@ -78,6 +76,24 @@
             mix-blend-mode: multiply;
         }
 
+        /* Animated Tech Grid Background */
+        .tech-grid {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: 50px 50px;
+            background-image: 
+                linear-gradient(to right, rgba(24, 79, 53, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(24, 79, 53, 0.05) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+            z-index: 0;
+            animation: gridMove 20s linear infinite;
+        }
+        @keyframes gridMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
         /* Smooth Scroll Configuration */
         html.lenis { height: auto; }
         .lenis.lenis-smooth { scroll-behavior: auto; }
@@ -88,7 +104,7 @@
         .text-sage { color: #184F35; }
         .bg-sage { background-color: #184F35; }
 
-        /* Nouveau Morph-Mark Animation CSS (Inspiré du logo généré) */
+        /* Morph-Mark Animation CSS */
         .confluentics-morph-mark {
             width: 54px;
             height: 54px;
@@ -119,6 +135,7 @@
         .btn-tech {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 1rem;
             padding: 16px 32px;
             background-color: #111111;
@@ -128,21 +145,22 @@
             font-size: 13px;
             font-weight: 500;
             letter-spacing: 0.05em;
-            transition: all 0.4s ease;
+            transition: border-color 0.4s ease, color 0.4s ease;
             position: relative;
             overflow: hidden;
             border: 1px solid #111111;
+            transform-style: preserve-3d;
         }
         .btn-tech::after {
             content: '';
             position: absolute;
             top: 0; left: -100%; width: 100%; height: 100%;
-            background-color: #184F35; /* Hover Vert Sauge */
-            transition: transform 0.4s ease;
+            background-color: #184F35; 
+            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
             z-index: 0;
         }
         .btn-tech:hover::after { transform: translateX(100%); }
-        .btn-tech > * { position: relative; z-index: 1; }
+        .btn-tech > * { position: relative; z-index: 1; pointer-events: none; }
         .btn-tech:hover { border-color: #184F35; }
 
         .btn-outline {
@@ -166,7 +184,7 @@
         }
         .marquee-content {
             display: flex;
-            animation: marquee 20s linear infinite;
+            animation: marquee 25s linear infinite;
         }
         .marquee-item {
             font-family: 'Space Grotesk', monospace;
@@ -182,18 +200,37 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* Cartes d'Infrastructure */
+        /* Cartes d'Infrastructure Dynamiques */
         .infra-card {
             border: 1px solid rgba(17, 17, 17, 0.1);
             background-color: #F7F7F5;
-            transition: all 0.4s ease;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+        .infra-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            box-shadow: 0 30px 60px -15px rgba(24, 79, 53, 0.15);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            pointer-events: none;
         }
         .infra-card:hover {
             border-color: #184F35;
             background-color: #ffffff;
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px -10px rgba(24, 79, 53, 0.05);
+            transform: translateY(-8px) scale(1.02);
         }
+        .infra-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Typewriter Cursor */
+        .typing-cursor::after {
+            content: '_';
+            animation: blink 1s step-start infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
 
         /* Curseur personnalisé (Blend Mode) */
         @media (pointer: fine) {
@@ -206,12 +243,15 @@
                 pointer-events: none;
                 z-index: 9999;
                 transform: translate(-50%, -50%);
-                transition: width 0.2s, height 0.2s, background-color 0.2s;
+                transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1), 
+                            height 0.3s cubic-bezier(0.19, 1, 0.22, 1), 
+                            background-color 0.3s ease;
             }
             .cursor-hover #cursor-dot {
-                width: 64px; height: 64px;
-                background-color: rgba(24, 79, 53, 0.1);
-                border: 1px solid #184F35;
+                width: 72px; height: 72px;
+                background-color: rgba(24, 79, 53, 0.08);
+                border: 1px solid rgba(24, 79, 53, 0.5);
+                backdrop-filter: blur(2px);
             }
         }
     </style>
@@ -231,24 +271,21 @@
     <div id="cursor-dot" class="hidden md:block"></div>
 
     <!-- Navigation (Gouvernance Visuelle) -->
-    <header class="fixed top-0 left-0 w-full p-6 md:px-12 flex justify-between items-center z-50 bg-alabaster/90 backdrop-blur-md border-b border-charcoal/5">
+    <header class="fixed top-0 left-0 w-full p-6 md:px-12 flex justify-between items-center z-50 bg-alabaster/80 backdrop-blur-lg border-b border-charcoal/5 transition-transform duration-500" id="main-header">
         <a href="#" class="logo-container flex items-center gap-4 group cursor-interact">
             
-            <!-- NOUVEAU MORPH-MARK SVG (Entrelacs et Rayons) -->
+            <!-- NOUVEAU MORPH-MARK SVG -->
             <svg viewBox="0 0 100 100" class="confluentics-morph-mark" aria-label="Confluentics AI">
-                <!-- Lignes radiantes (Teal/Sage) -->
                 <g class="radiating-lines" stroke="#184F35" stroke-width="2.5" stroke-linecap="round" fill="none">
                     <path d="M50,10 Q60,30 80,20" />
                     <path d="M90,50 Q70,40 80,80" />
                     <path d="M50,90 Q40,70 20,80" />
                     <path d="M10,50 Q30,60 20,20" />
-                    <!-- Lignes secondaires -->
                     <path d="M65,15 Q65,35 90,35" stroke-width="1.5" opacity="0.7"/>
                     <path d="M85,65 Q65,65 65,90" stroke-width="1.5" opacity="0.7"/>
                     <path d="M35,85 Q35,65 10,65" stroke-width="1.5" opacity="0.7"/>
                     <path d="M15,35 Q35,35 35,10" stroke-width="1.5" opacity="0.7"/>
                 </g>
-                <!-- Nœud central (Entrelacs Doré/Fusain) -->
                 <g class="knot-core" stroke="#111111" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none">
                     <path d="M35,45 C45,30 65,30 60,50 C55,70 35,70 40,50 C45,30 65,30 60,50" />
                     <path d="M65,55 C55,70 35,70 40,50 C45,30 65,30 60,50 C55,70 35,70 40,50" />
@@ -265,17 +302,20 @@
             <a href="#sovereignty" class="hover:text-charcoal transition-colors cursor-interact">Cloud Sovereignty</a>
         </nav>
 
-        <a href="https://calendar.app.google/7UXQo1ajnsaWA4rj7" target="_blank" class="btn-tech btn-outline cursor-interact hidden md:flex">
+        <a href="https://calendar.app.google/7UXQo1ajnsaWA4rj7" target="_blank" class="btn-tech btn-outline cursor-interact magnetic-btn hidden md:flex">
             <span>Initiate Genesis</span>
         </a>
     </header>
 
     <main id="smooth-wrapper">
-        <div id="smooth-content" class="pt-32">
+        <div id="smooth-content">
             
             <!-- Section Héroïque (Positionnement Startup IA) -->
-            <section class="relative w-full min-h-[85vh] flex flex-col justify-center px-6 md:px-12 xl:px-24">
-                <div class="max-w-6xl z-10">
+            <section class="relative w-full min-h-[100vh] flex flex-col justify-center px-6 md:px-12 xl:px-24 overflow-hidden pt-20">
+                <!-- Grille technologique de fond -->
+                <div class="tech-grid"></div>
+                
+                <div class="max-w-6xl z-10 relative">
                     <div class="font-space text-sage text-micro uppercase tracking-widest mb-8 fade-up flex items-center gap-3">
                         <span class="w-2 h-2 rounded-full bg-sage animate-pulse"></span>
                         Agentic Solo-Startup // Fully Grounded
@@ -288,22 +328,22 @@
                     </p>
                     
                     <div class="mt-16 flex flex-col sm:flex-row gap-6 fade-up delay-200">
-                        <a href="https://calendar.app.google/7UXQo1ajnsaWA4rj7" target="_blank" class="btn-tech cursor-interact">
+                        <a href="https://calendar.app.google/7UXQo1ajnsaWA4rj7" target="_blank" class="btn-tech cursor-interact magnetic-btn">
                             <span>Deploy an SVS Node</span>
                             <svg width="20" height="10" viewBox="0 0 20 10" fill="none">
                                 <path d="M15 1L19 5L15 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
                                 <path d="M19 5L1 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
                             </svg>
                         </a>
-                        <a href="#arsenal" class="btn-tech btn-outline cursor-interact">
+                        <a href="#arsenal" class="btn-tech btn-outline cursor-interact magnetic-btn">
                             <span>Explore Architecture</span>
                         </a>
                     </div>
                 </div>
             </section>
 
-            <!-- Marquee (Preuve Sociale Technologique - Emphasis Google Cloud) -->
-            <div class="marquee-container fade-up">
+            <!-- Marquee (Preuve Sociale Technologique) -->
+            <div class="marquee-container">
                 <div class="marquee-content">
                     <div class="marquee-item text-sage">
                         <span>// FULLY GROUNDED ON GOOGLE CLOUD</span> <span>✦</span> <span>GEN APP BUILDER INTEGRATION</span> <span>✦</span> <span>275 PROPRIETARY NOTEBOOKS</span> <span>✦</span> <span>SAMSUNG KNOX HARDWARE ISOLATION</span> <span>✦</span> <span>GEMINI ENTERPRISE PLATFORM</span> <span>✦</span>
@@ -321,10 +361,13 @@
                         A software architecture designed to eradicate <span class="italic text-sage">cognitive debt.</span>
                     </h2>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-grid">
                         <!-- Module 1 -->
-                        <div class="infra-card p-10 fade-up">
-                            <div class="font-space text-sage text-micro mb-6">MODULE 01</div>
+                        <div class="infra-card p-10 stagger-item cursor-interact">
+                            <div class="font-space text-sage text-micro mb-6 flex justify-between">
+                                <span>MODULE 01</span>
+                                <span class="text-charcoal/30">●</span>
+                            </div>
                             <h3 class="font-serif text-h2 mb-6">Systemic Vitality Scan (SVS)</h3>
                             <p class="font-sans text-base text-charcoal/70 leading-relaxed">
                                 Autonomous algorithmic ingestion. The SVS engine instantly maps your organizational metabolism (Scope 3, Supply Chain) to quantify financial energy leaks.
@@ -332,8 +375,11 @@
                         </div>
 
                         <!-- Module 2 -->
-                        <div class="infra-card p-10 fade-up delay-100">
-                            <div class="font-space text-sage text-micro mb-6">MODULE 02</div>
+                        <div class="infra-card p-10 stagger-item cursor-interact">
+                            <div class="font-space text-sage text-micro mb-6 flex justify-between">
+                                <span>MODULE 02</span>
+                                <span class="text-charcoal/30">●</span>
+                            </div>
                             <h3 class="font-serif text-h2 mb-6">Digital Twin (GCP Native)</h3>
                             <p class="font-sans text-base text-charcoal/70 leading-relaxed">
                                 Digital twin modeling hosted on Google Cloud. Our autonomous agents simulate millions of thermodynamic scenarios to guarantee long-term strategic resilience.
@@ -341,8 +387,11 @@
                         </div>
 
                         <!-- Module 3 -->
-                        <div class="infra-card p-10 fade-up delay-200 bg-charcoal text-alabaster border-charcoal">
-                            <div class="font-space text-sage text-micro mb-6">MODULE 03</div>
+                        <div class="infra-card p-10 stagger-item bg-charcoal text-alabaster border-charcoal cursor-interact">
+                            <div class="font-space text-sage text-micro mb-6 flex justify-between">
+                                <span>MODULE 03</span>
+                                <span class="text-alabaster/30">●</span>
+                            </div>
                             <h3 class="font-serif text-h2 mb-6">Distributed Negentropy</h3>
                             <p class="font-sans text-base text-alabaster/70 leading-relaxed">
                                 Strict execution rule (50/20/30). 50% of the unlocked value boosts your net profitability, while 20% is contractually reinvested into the biosphere (Layer 0).
@@ -355,7 +404,7 @@
             <!-- La Barrière Épistémologique (L'Arsenal - Focus Enterprise Grounding) -->
             <section id="arsenal" class="py-32 px-6 md:px-12 xl:px-24 bg-white border-y border-charcoal/5 relative overflow-hidden">
                 <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
-                    <div class="lg:w-1/2 z-10">
+                    <div class="lg:w-1/2 z-10 list-stagger-container">
                         <div class="font-space text-sage text-micro uppercase tracking-widest mb-8 fade-up">Knowledge Graph & Enterprise Search</div>
                         <h2 class="font-serif text-display leading-[1.1] mb-8 fade-up">
                             The Library of Alexandria 2.0
@@ -363,52 +412,58 @@
                         <p class="font-sans text-h4 text-charcoal/80 leading-relaxed mb-8 fade-up">
                             Algorithmic hallucination is the major risk of public LLMs. CONFLUENTICS erects an impenetrable technological barrier via massive data grounding.
                         </p>
-                        <ul class="font-sans text-base text-charcoal/70 space-y-6 fade-up">
-                            <li class="flex gap-4 items-start">
+                        <ul class="font-sans text-base text-charcoal/70 space-y-6">
+                            <li class="flex gap-4 items-start list-stagger-item">
                                 <span class="font-space text-sage">01/</span>
                                 <span><strong>MECE Ingestion:</strong> 275 sanctified Notebooks structuring global knowledge in a Mutually Exclusive and Collectively Exhaustive framework.</span>
                             </li>
-                            <li class="flex gap-4 items-start">
+                            <li class="flex gap-4 items-start list-stagger-item">
                                 <span class="font-space text-sage">02/</span>
                                 <span><strong>Source Truths:</strong> 150,000 premium documents (IMF, IPCC) filtered of all media noise. Zero opinions, only systemic data.</span>
                             </li>
-                            <li class="flex gap-4 items-start">
+                            <li class="flex gap-4 items-start list-stagger-item">
                                 <span class="font-space text-sage">03/</span>
                                 <span><strong>Fully Grounded on Google:</strong> Our entire graph is indexed via <em>Google Cloud Gen App Builder</em>. The Gemini 3 Pro engine is strictly tethered to these source documents, mathematically eliminating hallucinations.</span>
                             </li>
                         </ul>
                     </div>
                     
-                    <div class="lg:w-1/2 w-full relative h-[500px] bg-charcoal p-8 fade-up flex flex-col justify-between">
-                        <!-- Data Visualisation abstraite CSS -->
-                        <div class="font-space text-sage text-micro mb-4 border-b border-sage/30 pb-4">VERTEX AI INDEX // SYSTEM STATUS: OPTIMAL</div>
+                    <div class="lg:w-1/2 w-full relative h-[500px] bg-charcoal p-8 fade-up flex flex-col justify-between" id="terminal-block">
+                        <!-- Data Visualisation Dynamique CSS/JS -->
+                        <div class="font-space text-sage text-micro mb-4 border-b border-sage/30 pb-4 typing-cursor" id="terminal-header">
+                            <!-- JS will type here -->
+                        </div>
                         <div class="space-y-4 flex-grow flex flex-col justify-center">
                             <div class="flex justify-between items-center text-alabaster font-space text-micro">
                                 <span>CIRCLE 1: MACRO WISDOM (Grounded)</span>
                                 <span class="text-sage">15 N-BOOKS [4.5k sources]</span>
                             </div>
-                            <div class="w-full h-1 bg-alabaster/10"><div class="h-full bg-sage w-[15%]"></div></div>
+                            <!-- Barres animées via JS (data-width) -->
+                            <div class="w-full h-1 bg-alabaster/10"><div class="h-full bg-sage w-0 progress-bar" data-width="15%"></div></div>
                             
                             <div class="flex justify-between items-center text-alabaster font-space text-micro mt-4">
                                 <span>CIRCLE 2: GLOBAL MESH (Grounded)</span>
                                 <span class="text-sage">210 N-BOOKS [63k sources]</span>
                             </div>
-                            <div class="w-full h-1 bg-alabaster/10"><div class="h-full bg-sage w-[80%]"></div></div>
+                            <div class="w-full h-1 bg-alabaster/10"><div class="h-full bg-sage w-0 progress-bar" data-width="80%"></div></div>
 
                             <div class="flex justify-between items-center text-alabaster font-space text-micro mt-4">
                                 <span>CIRCLE 3: REGENERATIVE VERTICALS</span>
                                 <span class="text-sage">50 N-BOOKS [15k sources]</span>
                             </div>
-                            <div class="w-full h-1 bg-alabaster/10"><div class="h-full bg-sage w-[40%]"></div></div>
+                            <div class="w-full h-1 bg-alabaster/10"><div class="h-full bg-sage w-0 progress-bar" data-width="40%"></div></div>
                         </div>
                         <div class="font-space text-alabaster/50 text-micro text-right pt-4 border-t border-alabaster/10">CLOUD INGESTION CAPACITY: 150,000 DATA NODES</div>
                     </div>
                 </div>
             </section>
 
-            <!-- Souveraineté Bimodale (L'Armure - Focus Google/Samsung) -->
-            <section id="sovereignty" class="py-32 px-6 md:px-12 xl:px-24 bg-charcoal text-alabaster relative">
-                <div class="max-w-4xl mx-auto text-center mb-24 fade-up">
+            <!-- Souveraineté Bimodale -->
+            <section id="sovereignty" class="py-32 px-6 md:px-12 xl:px-24 bg-charcoal text-alabaster relative overflow-hidden">
+                <!-- Décoration de grille sombre -->
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-sage via-charcoal to-charcoal"></div>
+
+                <div class="max-w-4xl mx-auto text-center mb-24 fade-up relative z-10">
                     <span class="font-space text-sage text-micro uppercase tracking-widest block mb-8">Zero-Trust Security & Cloud Infrastructure</span>
                     <h2 class="font-serif text-display leading-tight mb-8">
                         Bimodal Sovereignty.
@@ -418,8 +473,8 @@
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-6xl mx-auto">
-                    <div class="border-t border-sage pt-8 fade-up">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-6xl mx-auto relative z-10">
+                    <div class="border-t border-sage pt-8 fade-up cursor-interact hover:bg-white/5 transition-colors p-6 -mx-6 rounded-lg">
                         <h3 class="font-space text-h3 text-sage mb-6">01 // Google Cloud Native & Grounding</h3>
                         <p class="font-sans text-base text-alabaster/80 leading-relaxed mb-6">
                             Agent orchestration is powered by the <strong>Gemini Enterprise Agent Platform</strong>. Confluentics is a "Fully Grounded" architecture: AI reasoning is anchored directly to the source via Google Cloud.
@@ -429,7 +484,7 @@
                         </p>
                     </div>
 
-                    <div class="border-t border-sage pt-8 fade-up delay-100">
+                    <div class="border-t border-sage pt-8 fade-up delay-100 cursor-interact hover:bg-white/5 transition-colors p-6 -mx-6 rounded-lg">
                         <h3 class="font-space text-h3 text-sage mb-6">02 // Samsung Knox Hardware Isolation</h3>
                         <p class="font-sans text-base text-alabaster/80 leading-relaxed mb-6">
                             Physical perimeter defense. The <strong>Knox Vault</strong> hardware isolation (CC EAL 4/5+ certified) protects infrastructure node access against any fault injections or probing attacks.
@@ -442,13 +497,13 @@
             </section>
 
             <!-- CTA Final -->
-            <section class="py-32 px-6 text-center bg-white border-b border-charcoal/5">
+            <section class="py-32 px-6 text-center bg-white border-b border-charcoal/5 relative">
                 <div class="max-w-3xl mx-auto fade-up">
                     <h2 class="font-serif text-h1 mb-8">Initiate the Genesis Sequence.</h2>
                     <p class="font-sans text-h4 text-charcoal/70 mb-12">
                         Cloud infrastructure licenses are strictly limited to one Fractional Executive (CSO/CAIO) per sovereign nation. Secure your territorial monopoly today.
                     </p>
-                    <a href="https://calendar.app.google/7UXQo1ajnsaWA4rj7" target="_blank" class="btn-tech cursor-interact">
+                    <a href="https://calendar.app.google/7UXQo1ajnsaWA4rj7" target="_blank" class="btn-tech cursor-interact magnetic-btn">
                         <span>Access the SVS Infrastructure</span>
                         <svg width="20" height="10" viewBox="0 0 20 10" fill="none">
                             <path d="M15 1L19 5L15 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
@@ -465,7 +520,10 @@
                     <a href="https://www.linkedin.com/in/ange-daniel-soro-a60974229" target="_blank" class="hover:text-charcoal transition-colors cursor-interact">LinkedIn</a>
                     <a href="#" class="hover:text-charcoal transition-colors cursor-interact">Legal</a>
                 </div>
-                <div class="text-sage">SYSTEM STATUS: NEgENTROPIC</div>
+                <div class="text-sage font-medium tracking-widest flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-sage animate-pulse"></span>
+                    SYSTEM STATUS: NEgENTROPIC
+                </div>
             </footer>
 
         </div>
@@ -485,12 +543,12 @@
         }
         requestAnimationFrame(raf);
 
-        // 2. GSAP Scroll Animations (Néo-Minimalisme Reveal)
+        // 2. GSAP Animations d'entrée (Fade Up Classique)
         gsap.registerPlugin(ScrollTrigger);
         
         document.querySelectorAll('.fade-up').forEach((el) => {
             gsap.fromTo(el, 
-                { y: 40, opacity: 0 }, 
+                { y: 50, opacity: 0 }, 
                 { 
                     y: 0, opacity: 1, duration: 1.2, ease: "power3.out",
                     scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
@@ -498,19 +556,99 @@
             );
         });
 
-        // 3. Custom Cursor Blend Mode
+        // 3. GSAP Stagger Animations (Modules et Listes)
+        gsap.from(".stagger-item", {
+            scrollTrigger: { trigger: ".stagger-grid", start: "top 80%" },
+            y: 50, opacity: 0, duration: 1, stagger: 0.2, ease: "power3.out"
+        });
+
+        gsap.from(".list-stagger-item", {
+            scrollTrigger: { trigger: ".list-stagger-container", start: "top 80%" },
+            x: -30, opacity: 0, duration: 0.8, stagger: 0.15, ease: "power2.out"
+        });
+
+        // 4. Data Visualization Terminal Animation (Progress Bars & Typewriter)
+        const terminalTrigger = { trigger: "#terminal-block", start: "top 75%" };
+        
+        // Progress Bars animées
+        gsap.utils.toArray('.progress-bar').forEach(bar => {
+            gsap.to(bar, {
+                width: bar.dataset.width,
+                duration: 1.5,
+                ease: "power4.out",
+                scrollTrigger: terminalTrigger
+            });
+        });
+
+        // Typewriter effect pour le Terminal
+        const textToType = "VERTEX AI INDEX // SYSTEM STATUS: OPTIMAL";
+        const typeTarget = document.getElementById("terminal-header");
+        let isTyped = false;
+
+        ScrollTrigger.create({
+            trigger: "#terminal-block",
+            start: "top 75%",
+            onEnter: () => {
+                if(!isTyped) {
+                    isTyped = true;
+                    let i = 0;
+                    typeTarget.innerHTML = '';
+                    const typingInterval = setInterval(() => {
+                        if (i < textToType.length) {
+                            typeTarget.innerHTML += textToType.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(typingInterval);
+                        }
+                    }, 50); // Vitesse de frappe (50ms par lettre)
+                }
+            }
+        });
+
+        // 5. Header Disparition/Apparition au Scroll (Sticky Behavior)
+        let lastScrollY = window.scrollY;
+        const header = document.getElementById("main-header");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 100) {
+                if (window.scrollY > lastScrollY) {
+                    header.style.transform = "translateY(-100%)"; // Cache en descendant
+                } else {
+                    header.style.transform = "translateY(0)"; // Montre en montant
+                }
+            } else {
+                header.style.transform = "translateY(0)";
+            }
+            lastScrollY = window.scrollY;
+        });
+
+        // 6. Custom Cursor & Boutons Magnétiques (Desktop Only)
         if (window.matchMedia("(pointer: fine)").matches) {
             const cursorDot = document.getElementById("cursor-dot");
             
+            // Cursor Follower
             window.addEventListener("mousemove", (e) => {
-                gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.1, ease: "power2.out" }); 
+                gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.15, ease: "power2.out" }); 
             });
 
-            // Effet d'expansion sur les éléments interactifs
+            // Hover state expansion
             const interactables = document.querySelectorAll(".cursor-interact");
             interactables.forEach(el => {
                 el.addEventListener("mouseenter", () => document.body.classList.add("cursor-hover"));
                 el.addEventListener("mouseleave", () => document.body.classList.remove("cursor-hover"));
+            });
+
+            // Boutons Magnétiques (Effet "Tactile Craft")
+            const magneticBtns = document.querySelectorAll('.magnetic-btn');
+            magneticBtns.forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    gsap.to(btn, { duration: 0.3, x: x * 0.3, y: y * 0.3, ease: "power2.out" });
+                });
+                btn.addEventListener('mouseleave', () => {
+                    gsap.to(btn, { duration: 0.3, x: 0, y: 0, ease: "elastic.out(1, 0.3)" });
+                });
             });
         }
     </script>
